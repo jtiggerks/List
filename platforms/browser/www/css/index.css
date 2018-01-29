@@ -306,6 +306,7 @@ body {
       -ms-transform: translate3d(0, 0, 0);
        -o-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
+            padding-bottom: 60px;
 }
 
 .snap-drawers {
@@ -383,12 +384,15 @@ body {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translate3d(0, 0, 0);
-     -moz-transform: translate3d(0, 0, 0);
-      -ms-transform: translate3d(0, 0, 0);
-       -o-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);  
+  padding-bottom: 60px;
+
 }
 
+#banner img{ max-height: 90px;      max-width: 100%;}
 .snap-drawers {
   position: absolute;
   top: 0;
