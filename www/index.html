@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+ 
+
+    <title>Guia Fácil</title>
+</head>
+
+<body>
+<input type="hidden" id="pagina-atual" name="home">
+<input type="hidden" id="categoria-atual" name="categoria">
+<input type="hidden" id="categoria-atual2" name="categoria">
+
+ <div class="header">
+     <div class="menu-controls">
+        <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
+    </div>
+    <h2>
+        <a href="index.html"><img src="img/logo.jpg"  style="    width: 80%;"></a>
+    </h2> 
+    <div class="titulo-header"></div> 
+ </div>
+
+ <div class="all-elements">
+
+     <div class="snap-drawers">
+            <div class="snap-drawer snap-drawer-left">  
+                <ul class="sidebar-navigation" id="id_menu"> 
+
+                </ul>   
+            </div>  
+
+            <div class="snap-drawer snap-drawer-right">        
+             
+
+            </div>
+    </div>
+
+    <div id="content" class="snap-content bg-guiamedico">
+
+     
+
+    <div id="home">        
+        <div class="centro_app_home">
+            <form>
+                <table cellspacing="5" cellpadding="5">
+                    <tr>
+                       <td class="td1">
+                            <input type="text-align" placeholder="O QUE VOCÊ PROCURA?" name="txt" id="oquetxt">
+                       </td> 
+                       <td class="td2">
+                           <select id="tipo">  
+                           </select>
+                       </td>
+                    </tr>                    
+                </table>
+            </form>  
+        </div>
+        <div style="clear: both; width: 100%;"></div>
+        
+        <ul id="autocomplete" style="display: none;"></ul>
+
+        <div id="box_menu_centro">
+
+  
+
+        </div>
+
+       
+    </div>
+
+
+    <div id="categoria_page" style="display: none">
+
+         
+
+        <div class="centro_app_home">
+            <form>
+                <table cellspacing="5" cellpadding="5">
+                    <tr>
+                       <td class="td1">
+                            <input type="text-align" placeholder="O QUE VOCÊ PROCURA?" name="txt" id="oquetxt2">
+                       </td> 
+                       <td class="td2">
+                           <select id="subcategoria_select">  
+                           </select>
+                       </td>
+                    </tr>                    
+                </table>
+            </form>  
+        </div>
+
+
+         <ul id="categorialista"></ul>
+    </div>
+ 
+
+     <div id="empresa_detalhes" style="display: none">
+
+          
+         
+ 
+          
+            <div id="img_medico" style="    text-align: center;">
+                
+            </div>
+            <div class="boxlinha">
+             <div style="padding:20px;">
+                <div style="float: left;  width: 14%; margin-right: 8%;">
+                    <img src="http://guiafacil.net.br/map.png" style="    width: 100%;">
+                </div>
+
+                <div id="endereco" style="float: left; width: 78%; "></div>
+             </div>
+            </div>
+            <br clear="all">
+
+            <div class="boxlinha" id="div_especialidade">
+                 <div style="padding:20px;">
+                <div style="float: left;  width: 14%; margin-right: 8%;">
+                   <img src="http://guiafacil.net.br/route.png" style="    width: 100%;">
+                </div>
+
+                <div><div id="especialidade"></div></div>
+                </div>
+            </div>
+            <br clear="all">
+            <div class="boxlinha">   
+             <div style="padding:20px;">
+                <div style="float: left;  width: 14%; margin-right: 8%;">
+                     <img src="http://guiafacil.net.br/mobile-phone.png" style="    width: 100%;">   
+                </div>                     
+                <div id="telefone1"></div>
+                <div id="telefone3"></div> 
+                </div>
+            </div>   
+            <br clear="all">
+            <div class="boxlinha" id="whatsappd">   
+             <div style="padding:20px;">
+                <div style="float: left;  width: 14%; margin-right: 8%;">
+                     <img src="http://guiafacil.net.br/whatsapp.png" style="    width: 100%;">   
+                </div>                     
+                <div id="telefone2"></div>
+                </div>
+            </div>             
+            <br clear="all">     
+            <div class="boxlinha" id="div_descricao">  
+             <div style="padding:20px;">
+                                     
+                <div id="descricao"></div>
+                </div>
+            </div>
+
+    </div>
+ 
+
+
+ </div>
+     <div id="banner" style="width: 100%; text-align: center;position: absolute;      bottom: -5px; z-index: 2;">
+         
+     </div>
+ </div>
+    <script type="text/javascript" src="js/jquery.js"></script> 
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/Snap.js"></script> 
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+    <script type="text/javascript"> 
+ 
+
+ 
+      
+    $(document).on('backbutton',
+         function(e){
+             e.preventDefault();
+
+            $("<div title='Guia Fácil'></div>").dialog({
+               open: function(event, ui) { 
+                    $(this).html('<span style="text-align:"center;">Deseja fechar o aplicativo?.</span>'); 
+                    $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); 
+                },
+                show: { effect: "fade", duration: 300 },
+                buttons: [
+                {
+                text: "Sim",
+                  click: function() {
+                    $( this ).dialog("close");
+                    navigator.app.exitApp(); 
+                  }
+                },
+                {
+                     
+                  text: "Não",
+                  click: function() {
+                    $( this ).dialog("close");
+                    location.href="index.html";
+                    
+                  }
+              }
+              ]
+            }); 
+ 
+        });
+
+
+        app.initialize();
+
+    </script>
+
+    <script>
+
+
+function publicidade(categoria = 0)
+{   
+    $('#banner').empty();
+    $.ajax({
+        url: "http://guiafacil.net.br/ap/publicidade.php",
+        dataType: "json",
+        crossDomain: true,
+        data: {
+            q: categoria
+        }        
+    })
+    .then( function ( response ) {
+        $.each( response, function ( i, val )
+        {
+              $('#banner').html(val.imagem);
+        });
+              
+    }); 
+
+}
+        $(function () {
+
+
+            $('.fecharapp').live('click',function(e)
+            {
+
+                $("<div title='Guia Fácil'></div>").dialog({
+                   open: function(event, ui) { 
+                        $(this).html('<span style="text-align:"center;">Deseja fechar o aplicativo?.</span>'); 
+                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); 
+                    },
+                    show: { effect: "fade", duration: 300 },
+                    buttons: [
+                    {
+                    text: "Sim",
+                      click: function() {
+                        $( this ).dialog("close");
+                        navigator.app.exitApp(); 
+                      }
+                    },
+                    {
+                         
+                      text: "Não",
+                      click: function() {
+                        $( this ).dialog("close");
+                        location.href="index.html";
+                        
+                      }
+                  }
+                  ]
+            }); 
+
+
+
+            });
+
+            $('.titulo-header i').live('click',function(e)
+            {   
+                if($(this).attr('rel3') == 1)
+                {
+                    rel = $(this).attr('rel');
+                    rel2 = $(this).attr('rel2');
+                    var html = '';
+
+                    publicidade(rel);
+                    
+                    $('#pagina-atual').val('categoria_page'); 
+                    $('#categoria-atual').val(rel2);
+                    $('#categoria-atual2').val(rel);
+
+                        $('#subcategoria_select').empty();
+
+                        $.ajax({
+                            url: "http://guiafacil.net.br/ap/lista_sub.php",
+                            dataType: "json",
+                            crossDomain: true,
+                            data: {
+                                q: rel
+                            }                            
+                        })
+                        .then( function ( response ) {
+
+                                $('#subcategoria_select').append($('<option>', {
+                                    value: '',
+                                    text: 'Subcategoria'
+                                }));    
+
+                                $.each( response, function ( i, val ) {
+                                    if(val != '')
+                                    {  
+                                        $('#subcategoria_select').append($('<option>', {
+                                            value: val.id,
+                                            text: val.nome
+                                        }));
+                                    }                            
+                                }); 
+                        });
+
+
+
+                    var $ul =  $("#categorialista");
+                    $ul.empty();
+              
+                    $.ajax({
+                        url: "http://guiafacil.net.br/ap/porcategoria.php",
+                        dataType: "json",
+                        crossDomain: true,
+                        data: {
+                            q: rel
+                        }
+                    })
+                    .then( function ( response ) {
+                        $.each( response, function ( i, val ) {
+                            if(val != '')
+                            {
+                                html += "<li>" + val.descricao + "</li>";
+                            }else
+                            {
+                               html = "<li>Nenhum resultado encontrado por '"+rel2+"'</li>";
+                            }                            
+                        });
+
+                        $ul.html(html); 
+                        
+                    });
+
+
+                    var hideDeffered = $('#home').hide();
+                    hideDeffered.promise().done(function() {
+                        $('.titulo-header').fadeIn();
+                        $('#content').css('padding-top','100px');
+
+
+                        $('.titulo-header').html('<i rel="home" class="fa fa-arrow-left" aria-hidden="true"></i>'+"<div style=''>"+rel2+"</div>");
+                        $('#categoria_page').show();
+                    });
+
+                }else
+                {
+                    var hideDeffered = $('#home, #categoria_page, #empresa_detalhes').hide();
+                    hideDeffered.promise().done(function() {});
+                    $('.titulo-header').fadeIn();
+                    $('#content').css('padding-top','100px');
+                    $('.titulo-header').html('<i rel="home" class="fa fa-arrow-left" aria-hidden="true"></i>'+"<div style=''>"+$('#categoria-atual').val()+"</div>");
+                    $('#'+$(this).attr('rel')).show();
+
+                    if($(this).attr('rel') == 'home') 
+                    {
+                            $('.titulo-header').hide();
+                            $('#content').css('padding-top','50px');
+                    }
+                }
+
+            });
+ 
+
+           publicidade(0);
+
+            var  conteudohtml_centro  = "";
+            var menu_hum = '';
+
+            menu_hum += "<li><a href='index.html' class='home'><i class='fa fa-home'></i>HOME<i style='visibility:hidden' class='fa fa-plus'></i></a></li>";
+           
+
+            $.ajax({
+                url: "http://guiafacil.net.br/ap/categorias.php",
+                dataType: "json",
+                crossDomain: true
+            })
+            .then( function ( response ) {
+                $.each( response, function ( i, val ) {
+                    if(val != '')
+                    {   
+
+                         menu_hum += "<li><a class='home categoriabtn' rel2='" + val.nome + "' rel='"+ val.id +"'><i class='fa fa-bars'></i>" + val.nome + "<i style='visibility:hidden' class='fa fa-plus'></i></a></li>";
+                        
+                         conteudohtml_centro += "<a class='categoriabtn bglaranja' rel2='" + val.nome + "' rel='"+ val.id +"'>"+
+                         "<img style='position: relative; top: 10px;  margin: 0 auto;' src='http://guiafacil.net.br/imagens/ads/" + val.imagem + "'/> " + val.nome + "</a>";  
+                       
+                    }else
+                    {
+                        conteudohtml_centro = "";
+                    }                            
+                });
+
+                menu_hum += "<li><a class='fecharapp'><i class='fa fa-sign-out'></i>FECHAR<i style='visibility:hidden' class='fa fa-plus'></i></a></li>";
+                 $('#id_menu').html(menu_hum); 
+                 $('#box_menu_centro').html(conteudohtml_centro); 
+                
+            });
+
+
+            $('#tipo').empty();
+
+            $.ajax({
+                url: "http://guiafacil.net.br/ap/tipo.php",
+                dataType: "json",
+                crossDomain: true
+            })
+            .then( function ( response ) {
+
+                    $('#tipo').append($('<option>', {
+                        value: '',
+                        text: 'TIPO'
+                    }));    
+
+                    $.each( response, function ( i, val ) {
+                        if(val != '')
+                        {  
+                            $('#tipo').append($('<option>', {
+                                value: val.id,
+                                text: val.nome
+                            }));
+                        }                            
+                    }); 
+            });
+
+
+            ///
+
+
+            $('.categoriabtn').live('click',function(e)
+            {                    
+                    rel = this.rel;
+                    rel2 = $(this).attr('rel2');
+                    var html = '';
+
+                    publicidade(rel);
+                    
+                    $('#pagina-atual').val('categoria_page'); 
+                    $('#categoria-atual').val(rel2);
+                    $('#categoria-atual2').val(rel);
+
+                        $('#subcategoria_select').empty();
+
+                        $.ajax({
+                            url: "http://guiafacil.net.br/ap/lista_sub.php",
+                            dataType: "json",
+                            crossDomain: true,
+                            data: {
+                                q: rel
+                            }                            
+                        })
+                        .then( function ( response ) {
+
+                                $('#subcategoria_select').append($('<option>', {
+                                    value: '',
+                                    text: 'Subcategoria'
+                                }));    
+
+                                $.each( response, function ( i, val ) {
+                                    if(val != '')
+                                    {  
+                                        $('#subcategoria_select').append($('<option>', {
+                                            value: val.id,
+                                            text: val.nome
+                                        }));
+                                    }                            
+                                }); 
+                        });
+
+
+
+                    var $ul =  $("#categorialista");
+                    $ul.empty();
+
+                    $.ajax({
+                        url: "http://guiafacil.net.br/ap/porcategoria.php",
+                        dataType: "json",
+                        crossDomain: true,
+                        data: {
+                            q: rel
+                        }
+                    })
+                    .then( function ( response ) {
+                        $.each( response, function ( i, val ) {
+                            if(val != '')
+                            {
+                                html += "<li>" + val.descricao + "</li>";
+                            }else
+                            {
+                               html = "<li>Nenhum resultado encontrado por '"+rel2+"'</li>";
+                            }                            
+                        });
+
+                        $ul.html(html); 
+                        
+                    });
+
+
+                    var hideDeffered = $('#home').hide();
+                    hideDeffered.promise().done(function() {
+                        $('.titulo-header').fadeIn();
+                        $('#content').css('padding-top','100px');
+                        $('.titulo-header').html('<i rel="home" class="fa fa-arrow-left" aria-hidden="true"></i>'+"<div style=''>"+rel2+"</div>");
+                        $('#categoria_page').show();
+                    });
+            });
+
+
+
+            $('.div_list_medico').live('click',function(e){
+                    $('.titulo-header').html('');
+                    rel = this.rel;
+                    var nomemedico,endereco,foto,especialidade;
+
+                    var voltarpara= $('#pagina-atual').val();
+
+                    $('#pagina-atual').val('empresa_detalhes');          
+                    var hideDeffered = $('#home,#categoria_page').hide();
+                    hideDeffered.promise().done(function() {
+                        $('#empresa_detalhes').show();
+                    });
+
+
+                    $.ajax({
+                        url: "http://guiafacil.net.br/ap/detalheempresa.php",
+                        dataType: "json",
+                        crossDomain: true,
+                        data: {
+                            q: rel
+                        }
+                    })
+                    .then( function ( response ) {
+                        $.each( response, function ( i, val ) {
+                            
+
+                             $('#img_medico').html('<img src="http://guiafacil.net.br/'+val.foto+'" style="width:100%;" />');
+                             $('.titulo-header').fadeIn();
+                             $('#content').css('padding-top','100px');
+                             $('.titulo-header').html('<i rel3="1" rel="'+$('#categoria-atual2').val()+'" rel2="'+$('#categoria-atual').val()+'" class="fa fa-arrow-left" aria-hidden="true"></i>'+"<div id='nomemedicotitulo'>"+val.nome+"</div>");
+                             $('#endereco').empty().html('<a style="color:#333;" href="http://maps.google.com/?daddr='+val.endereco+',Lins SP">'+val.endereco+'</a>');
+                             
+                             if(val.telefone1 != null)
+                             $('#telefone1').empty().html('<a style="color:#333;" href="tel:'+val.telefone1+'">'+val.telefone1+' </a>');
+
+                  
+
+                             if(val.telefone2  != null)                             
+                                 $('#telefone2').empty().html('<a style="color:#333;" href="tel:'+val.telefone2+'">'+val.telefone2+' </a>');
+                             else
+                                 $('#whatsappd').hide();
+                            
+
+
+                             if(val.telefone3 != null)                             
+                                $('#telefone3').empty().html('<a style="color:#333;" href="tel:'+val.telefone3+'">'+val.telefone3+' </a>');
+                        
+ 
+                               
+                             
+                             
+
+                             if(val.descricao != null)
+                             {
+                                $('#descricao').empty().html(val.descricao);
+                                $('#div_descricao').show();
+                             }else
+                             {
+                                $('#div_descricao').hide();
+                             }
+
+                             if(val.subcategoria != '')
+                             {  
+                                if(val.tipo == 1)
+                                {
+                                    $('#especialidade').empty().html(''+val.subcategoria);
+                                    $('#div_especialidade').show();
+                                }else{
+                                     $('#div_especialidade').hide();
+                                }
+                             }else
+                             {
+                                $('#div_especialidade').hide();
+                             }
+
+                        });
+                    });
+
+   
+            });
+ 
+ 
+            $("#tipo").change(function(){
+
+                    var tipo =  $("#tipo").val();
+
+                    var $ul =  $("#autocomplete"),
+                    $input = $("#oquetxt"),
+                    value = $input.val(),
+                    html = "";
+ 
+
+                    $ul.html("");
+
+
+                if ( value && value.length > 2 ) {
+                    
+                    $.ajax({
+                        url: "http://guiafacil.net.br/ap/search.php",
+                        dataType: "json",
+                        crossDomain: true,
+                        data: {
+                            q: $input.val(), tipo : tipo
+                        }
+                    })
+                    .then( function ( response ) {
+
+                    
+                        if(response != null)
+                        {   
+                            $ul.fadeIn();    
+                            $.each( response, function ( i, val ) {
+
+                                if(val != '')
+                                {
+                                    html += "<li>" + val.descricao + "</li>";
+                                }                             
+                            });
+                        }else
+                        {
+                             
+                               html = "<li>Nenhum resultado encontrado por '"+$input.val()+"'</li>";
+                               $ul.html(html);                              
+                        
+                        }   
+
+                        $ul.html(html); 
+                        
+
+
+
+                    });
+                }else
+                {
+                        $("<div title='ALERTA'></div>").dialog({
+                           open: function(event, ui) { $(this).html('<span style="text-align:"center;">DIGITE AO MENOS 3 CARACTERES PARA PESQUISAR</span>'); $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); },
+                            show: { effect: "fade", duration: 300 },
+                            buttons: [
+                            {
+                              text: "ok",
+                              click: function() {
+                                $( this ).dialog("close");
+                                 
+                              }
+                            }
+                          ]
+                        }); 
+                }
+
+
+            });
+
+
+            $("#subcategoria_select").change(function(){
+
+                
+
+                    var $ul =  $("#categorialista"),
+                    $input = $("#oquetxt2"),
+                    value = $input.val(),
+                    html = "";
+                    var subcat = this.value;
+ 
+
+                    $ul.html("");
+
+
+                if (value && value.length > 2 ) {
+                    
+                    $.ajax({
+                        url: "http://guiafacil.net.br/ap/search2.php",
+                        dataType: "json",
+                        crossDomain: true,
+                        data: {
+                            q: $input.val(), tipo : subcat,cat : $('#categoria-atual2').val()
+                        }
+                    })
+                    .then( function ( response ) {
+
+                    
+                        if(response != null)
+                        {
+                            $.each( response, function ( i, val ) {
+
+                                if(val != '')
+                                {
+                                    html += "<li>" + val.descricao + "</li>";
+                                }                             
+                            });
+                        }else
+                        {
+                             
+                               html = "<li>Nenhum resultado encontrado por '"+$input.val()+"'</li>";
+                             $ul.html(html);                              
+                        
+                        }
+
+                        $ul.html(html); 
+                        
+
+
+
+                    });
+                }else
+                {
+                        $("<div title='ALERTA'></div>").dialog({
+                           open: function(event, ui) { $(this).html('<span style="text-align:"center;">DIGITE AO MENOS 3 CARACTERES PARA PESQUISAR</span>'); $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); },
+                            show: { effect: "fade", duration: 300 },
+                            buttons: [
+                            {
+                              text: "OK",
+                              click: function() {
+                                $( this ).dialog("close");
+                                 
+                              }
+                            }
+                          ]
+                        }); 
+                }
+
+
+            });
+
+
+
+
+            $("#oquetxt2").keyup( function ( e, data ) {
+                     
+
+                    var $ul =  $("#categorialista"),
+                    $input = $("#oquetxt2"),
+                    value = $input.val(),
+                    html = "";
+                    var subcat = $("#categorialista").val();
+ 
+ 
+                    $ul.html("");
+
+                if ( value && value.length > 2 ) {
+                    
+                    $.ajax({
+                        url: "http://guiafacil.net.br/ap/search2.php",
+                        dataType: "json",
+                        crossDomain: true,
+                        data: {
+                            q: $input.val(), tipo : subcat,cat : $('#categoria-atual2').val()
+                        }
+                    })
+                    .then( function ( response ) {  
+
+                        if(response != null)
+                        {
+                            $.each( response, function ( i, val ) {
+                                if(val != '')
+                                {
+                                    html += "<li>" + val.descricao + "</li>";
+                                }                         
+                            });
+                        }else
+                        {
+                             html = "<li>Nenhum resultado encontrado por '"+$input.val()+"' em '"+$('#categoria-atual').val()+"'</li>";
+                        }
+
+                        $ul.html(html); 
+                        
+                    });
+                }
+            });
+
+
+
+            $("#oquetxt").keyup( function ( e, data ) {
+                     
+                    var tipo =  $("#tipo").val();
+
+                    var $ul =  $("#autocomplete"),
+                    $input = $(this),
+                    value = $input.val(),
+                    html = "";
+ 
+
+                    $ul.html("");
+
+
+                if ( value && value.length > 2 ) {
+                    
+                    $.ajax({
+                        url: "http://guiafacil.net.br/ap/search.php",
+                        dataType: "json",
+                        crossDomain: true,
+                        data: {
+                            q: $input.val(), tipo : tipo
+                        }
+                    })
+                    .then( function ( response ) {
+                        $ul.fadeIn();
+
+                        if(response != null)
+                        {
+
+                            $.each( response, function ( i, val ) { 
+ 
+                                if(val != '')
+                                {
+                                    html += "<li>" + val.descricao + "</li>";
+                                }else
+                                {
+                                   html = "<li>Nenhum resultado encontrado por '"+$input.val()+"'</li>";
+                                }  
+                         
+
+                            });
+                        }else
+                        {
+                             html = "<li>Nenhum resultado encontrado por '"+$input.val()+"'</li>";
+                        }
+
+                        $ul.html(html); 
+                        
+                    });
+                }
+            });
+
+
+
+
+
+        });
+
+ 
+
+    </script>
+
+
+</body>
+
+</html>
