@@ -372,7 +372,7 @@ function publicidade(categoria = 0)
 
                 }else
                 {
-                     publicidade(0);
+                    publicidade(0);
                     var hideDeffered = $('#home, #categoria_page, #empresa_detalhes').hide();
                     hideDeffered.promise().done(function() {});
                     $('.titulo-header').fadeIn();
@@ -564,7 +564,7 @@ function publicidade(categoria = 0)
                              $('#img_medico').html('<img src="http://guiafacil.net.br/'+val.foto+'" style="width:100%;" />');
                              $('.titulo-header').fadeIn();
                              $('#content').css('padding-top','100px');
-                             $('.titulo-header').html('<i rel3="1" rel="'+$('#categoria-atual2').val()+'" rel2="'+$('#categoria-atual').val()+'" class="fa fa-arrow-left" aria-hidden="true"></i>'+"<div id='nomemedicotitulo'>"+val.nome+"</div>");
+                             $('.titulo-header').html('<i rel3="1" rel="home" rel2="'+$('#categoria-atual').val()+'" class="fa fa-arrow-left" aria-hidden="true"></i>'+"<div id='nomemedicotitulo'>"+val.nome+"</div>");
                              $('#endereco').empty().html('<a style="color:#333;" href="http://maps.google.com/?daddr='+val.endereco+',Lins SP">'+val.endereco+' <small>(VER ROTA)</small></a>');
                              
                              if(val.telefone1 != null)
