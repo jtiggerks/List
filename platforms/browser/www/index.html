@@ -370,7 +370,90 @@ function publicidade(categoria = 0)
                         $('#categoria_page').show();
                     });
 
-                }else
+                }else if($(this).attr('rel3') == 'produto')
+                {
+
+ 
+                    rel = $(this).attr('rel');
+                    rel2 = $(this).attr('rel2');
+
+                    var html = '';
+
+                    publicidade(rel);
+                    
+                    $('#pagina-atual').val('categoria_page'); 
+                    $('#categoria-atual').val(rel2);
+                    $('#categoria-atual2').val(rel);
+
+                        $('#subcategoria_select').empty();
+
+                        $.ajax({
+                            url: "http://guiafacil.net.br/ap/lista_sub.php",
+                            dataType: "json",
+                            crossDomain: true,
+                            data: {
+                                q: rel
+                            }                            
+                        })
+                        .then( function ( response ) {
+
+                                $('#subcategoria_select').append($('<option>', {
+                                    value: '',
+                                    text: 'Subcategoria'
+                                }));    
+
+                                $.each( response, function ( i, val ) {
+                                    if(val != '')
+                                    {  
+                                        $('#subcategoria_select').append($('<option>', {
+                                            value: val.id,
+                                            text: val.nome
+                                        }));
+                                    }                            
+                                }); 
+                        });
+
+
+
+                    var $ul =  $("#categorialista");
+                    $ul.empty();
+
+                    $.ajax({
+                        url: "http://guiafacil.net.br/ap/porcategoria.php",
+                        dataType: "json",
+                        crossDomain: true,
+                        data: {
+                            q: rel
+                        }
+                    })
+                    .then( function ( response ) {
+                        $.each( response, function ( i, val ) {
+                            if(val != '')
+                            {
+                                html += "<li>" + val.descricao + "</li>";
+                            }else
+                            {
+                               html = "<li>Nenhum resultado encontrado por '"+rel2+"'</li>";
+                            }                            
+                        });
+
+                        $ul.html(html); 
+                        
+                    });
+
+
+                    var hideDeffered = $('#home, #categoria_page, #empresa_detalhes').hide();
+                    hideDeffered.promise().done(function() {
+                        $('.titulo-header').fadeIn();
+                        $('#content').css('padding-top','100px');
+                        $('.titulo-header').html('<i rel="home" class="fa fa-arrow-left" aria-hidden="true"></i>'+"<div style=''>"+rel2+"</div>");
+                        $('#categoria_page').show();
+                    });
+
+
+
+                }
+                else
                 {
                     publicidade(0);
                     var hideDeffered = $('#home, #categoria_page, #empresa_detalhes').hide();
@@ -559,12 +642,13 @@ function publicidade(categoria = 0)
                     })
                     .then( function ( response ) {
                         $.each( response, function ( i, val ) {
-                            
+                                
+
 
                              $('#img_medico').html('<img src="http://guiafacil.net.br/'+val.foto+'" style="width:100%;" />');
                              $('.titulo-header').fadeIn();
                              $('#content').css('padding-top','100px');
-                             $('.titulo-header').html('<i  rel="home" rel2="'+$('#categoria-atual').val()+'" class="fa fa-arrow-left" aria-hidden="true"></i>'+"<div id='nomemedicotitulo'>"+val.nome+"</div>");
+                             $('.titulo-header').html('<i rel3="produto" rel="'+$('#categoria-atual2').val()+'" rel2="'+$('#categoria-atual').val()+'" class="fa fa-arrow-left" aria-hidden="true"></i>'+"<div id='nomemedicotitulo'>"+val.nome+"</div>");
                              $('#endereco').empty().html('<a style="color:#333;" href="http://maps.google.com/?daddr='+val.endereco+',Lins SP">'+val.endereco+' <small>(VER ROTA)</small></a>');
                              
                              if(val.telefone1 != null)
@@ -630,7 +714,7 @@ function publicidade(categoria = 0)
                     $ul.html("");
 
 
-                if ( value && value.length > 2 ) {
+           
                     
                     $.ajax({
                         url: "http://guiafacil.net.br/ap/search.php",
@@ -667,8 +751,7 @@ function publicidade(categoria = 0)
 
 
                     });
-                }else
-                {
+                 /*
                         $("<div title='ALERTA'></div>").dialog({
                            open: function(event, ui) { $(this).html('<span style="text-align:"center;">DIGITE AO MENOS 3 CARACTERES PARA PESQUISAR</span>'); $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); },
                             show: { effect: "fade", duration: 300 },
@@ -681,8 +764,8 @@ function publicidade(categoria = 0)
                               }
                             }
                           ]
-                        }); 
-                }
+                        }); */
+               
 
 
             });
@@ -701,15 +784,16 @@ function publicidade(categoria = 0)
 
                     $ul.html("");
 
+                  
 
-                if (value && value.length > 2 ) {
+                    if(value == '') value = "9999999";
                     
                     $.ajax({
                         url: "http://guiafacil.net.br/ap/search2.php",
                         dataType: "json",
                         crossDomain: true,
                         data: {
-                            q: $input.val(), tipo : subcat,cat : $('#categoria-atual2').val()
+                            q: value, tipo : subcat,cat : $('#categoria-atual2').val()
                         }
                     })
                     .then( function ( response ) {
@@ -738,8 +822,8 @@ function publicidade(categoria = 0)
 
 
                     });
-                }else
-                {
+             
+                /*
                         $("<div title='ALERTA'></div>").dialog({
                            open: function(event, ui) { $(this).html('<span style="text-align:"center;">DIGITE AO MENOS 3 CARACTERES PARA PESQUISAR</span>'); $(".ui-dialog-titlebar-close", ui.dialog | ui).hide(); },
                             show: { effect: "fade", duration: 300 },
@@ -752,8 +836,8 @@ function publicidade(categoria = 0)
                               }
                             }
                           ]
-                        }); 
-                }
+                        }); */
+               
 
 
             });
@@ -773,7 +857,7 @@ function publicidade(categoria = 0)
  
                     $ul.html("");
 
-                if ( value && value.length > 2 ) {
+                if(value == '') value = "9999999";
                     
                     $.ajax({
                         url: "http://guiafacil.net.br/ap/search2.php",
@@ -801,7 +885,7 @@ function publicidade(categoria = 0)
                         $ul.html(html); 
                         
                     });
-                }
+               
             });
 
 
