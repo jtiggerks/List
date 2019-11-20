@@ -9,7 +9,7 @@
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-minSdkVersion" value="28" />
 
 
     <preference name="orientation"                value="portrait" />        <!-- all: default means both landscape and portrait are enabled -->
